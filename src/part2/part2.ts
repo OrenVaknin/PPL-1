@@ -31,12 +31,31 @@ const countLetter: (word: string, letter: string) => number = (word, letter) => 
     R.length
 )(word);
 
-export const isPaired: (x:string) => boolean = R.pipe(
-    //(x: string) => stringToArray(x),
-    //(x: string[]) => x.filter((char: string)=> '()[]{}'.includes(char)),
-    (x: string) => countLetter(x,'(') === countLetter(x,')') && countLetter(x,'[') === countLetter(x,']') && countLetter(x,'{') === countLetter(x,'}')
+//const getIndices = (letters:string[] ,paren:string):number[] =>
+
+const indexArray = (arr:string[]):{char:string,id:number}[] =>
+    arr.map((char,index) => ({char,id:index}));
+
+const charFilter = (arr:({char:string,id:number})[],paren:string) : ({char:string,id:number})[] =>
+    arr.filter(x => x.char === paren);
+
+const checkClosure = (openers:({char:string,id:number})[],closers:({char:string,id:number})[]) : boolean =>
+    openers.length != closers.length ? false : 
+    openers.every((value,index) => value.id < closers[index].id);
+
+const checkParen = (arr:({char:string,id:number})[]) : boolean =>
+    (checkClosure(charFilter(arr,"("),charFilter(arr,(")")))) &&
+    (checkClosure(charFilter(arr,"["),charFilter(arr,("]")))) &&
+    (checkClosure(charFilter(arr,"{"),charFilter(arr,("}"))));
     
-    );
+ 
+
+
+export const isPaired: (x:string) => boolean = R.pipe(
+    (x:string) => stringToArray(x),
+    (x:string[]) => indexArray(x),
+    (arr:({char:string,id:number})[]) => checkParen(arr)
+);
 
 
 /* Question 3 */
