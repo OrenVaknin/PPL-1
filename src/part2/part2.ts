@@ -11,7 +11,7 @@ export const countVowels: (x:string) => number =  R.pipe(
 
 /* Question 2 */
 /*const countLetter: (word:string , letter:string) => number =  R.pipe(
-    (word: string) => stringToArray(word),
+    //(word: string) => stringToArray(word),
    // (letter: string) => stringToArray(letter),
     //(word: string[]) => word.filter((char: string) => letter.includes(char)),
     (word: string[]) => word.filter((char: string) => char === letter),
