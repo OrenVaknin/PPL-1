@@ -3,19 +3,19 @@ import { countVowels, isPaired, treeToSentence, WordTree } from "../../src/part2
 describe("Assignment 1 Part 2", () => {
     describe("countVowels", () => {
         it("counts letters", () => {
-            expect(countVowels("aaabbbb")).toEqual({"a": 3, "b":4});
+            expect(countVowels("aaabbbb")).toEqual(3);
         });
         it("counts letters", () => {
-            expect(countVowels("AaaBbbb")).toEqual({"a": 3, "b":4});
+            expect(countVowels("AaaBbbb")).toEqual(3);
         });
         it("counts letters", () => {
-            expect(countVowels("ABbbaab")).toEqual({"a": 3, "b":4});
+            expect(countVowels("ABbbaab")).toEqual(3);
         });
         it("counts letters", () => {
-            expect(countVowels("I am robot")).toEqual({"i": 1, "a": 1, "m": 1, "r":1, "o":2, "b":1, "t":1});
+            expect(countVowels("I am robot")).toEqual(4);
         });
         it("counts letters", () => {
-            expect(countVowels("abcABCaabbcc d")).toEqual({"a": 4, "b":4, "c": 4, "d": 1});
+            expect(countVowels("abcABCaabbcc d")).toEqual(4);
         });
     });
 
@@ -65,6 +65,5 @@ describe("Assignment 1 Part 2", () => {
             expect(treeToSentence(t5)).toBe("");
         });
     });
-    
 });
 
