@@ -2,15 +2,76 @@
 
 (define append
     (lambda (l1 l2)
-    @todo
-))
+        (if (eq? l1 '())
+            l2
+            (cons (car l1) (append (cdr l1) l2))
+        )
+    )
+)
 
 (define reverse
-    (lambda (l)
-    @todo
-))
+    (lambda (l1)
+        (if (eq? l1 '())
+            '()
+            (append(reverse(cdr l1)) (list(car l1)))
+        )
+    )
+)
 
+
+
+(define length
+    (lambda (lst)
+        (if (eq? lst '())
+            0
+            (+ 1 (length (cdr lst)))
+        )
+    )
+)
+        
 (define duplicate-items
     (lambda (lst dup-count)
-    @todo    
-))
+        (duplicate-items-inner lst (adjust-dup-count lst dup-count ))
+    )
+)
+(define adjust-dup-count
+    (lambda (lst dup-count)
+        (define (cycle dup-count n)
+        (if (<= n 0)
+            '()
+            (append dup-count (cycle dup-count (- n (length dup-count))))))
+        (take (cycle dup-count (length lst)) (length lst)
+        )
+    )
+)
+
+(define take
+    (lambda (lst n)
+        (if (or (eq? lst '()) (<= n 0))
+            '()
+            (cons (car lst) (take (cdr lst) (- n 1)))
+        )
+    )
+)
+
+(define duplicate-helper
+    (lambda (number count)
+        (if (eq? count 0)
+            '()
+            (cons number (duplicate-helper number (- count 1)))
+        )
+    )
+)
+
+(define duplicate-items-inner
+    (lambda (lst dup-count)
+        (if (eq? lst '())
+            '()
+            (append (duplicate-helper (car lst) (car dup-count))
+                    (duplicate-items-inner (cdr lst) (cdr dup-count))
+            )
+        )
+    )
+)
+
+
