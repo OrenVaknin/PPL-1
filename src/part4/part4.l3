@@ -1,7 +1,7 @@
 #lang racket/base
 
 ;;Signature: append(l1,l2)
-;;Type: [List(any)*List(any) -> List(any)]
+;;Type: [List(T)*List(S) -> List(T|S)]
 ;;Purpose: concatenates the the list l2 to the list l1
 ;;Pre-condition: true
 ;;Tests: (append '(1 2 3) '(1 2)) -> '(1 2 3 1 2); (append '(3) '(3 1)) -> '(3 3 1);
@@ -15,7 +15,7 @@
 )
 
 ;;Signature: reverse(l1)
-;;Type: [List(any) -> List(any)]
+;;Type: [List(T) -> List(T)]
 ;;Purpose: reverses the order of the elements in the list
 ;;Pre-condition: true
 ;;Tests: (reverse '(1 2 3)) -> '(3 2 1); (reverse '(3)) -> '(3);
@@ -41,7 +41,7 @@
 
 
 ;;Signature: duplicate-items(lst,dup-count)
-;;Type: [List(any)*List(number) -> List(any)]
+;;Type: [List(T)*List(number) -> List(T)]
 ;;Purpose: duplicates each item of lst according to the number defined in the same position in dup-count. if dup-count is too short it loops around itself
 ;;Pre-condition: length(dup-count) > 0 
 ;;Tests: (duplicate-items '(1 2 3) '(1 2 3)) -> (1 2 2 3 3 3); (duplicate-items '(1 2 3) '(1 3)) -> (1 2 2 2 3);
